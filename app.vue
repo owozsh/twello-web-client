@@ -1,5 +1,15 @@
 <template>
   <div>
-    <NuxtWelcome />
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
   </div>
 </template>
+
+<script setup>
+const colorMode = useColorMode();
+
+useHead({
+  title: "twello",
+});
+</script>
