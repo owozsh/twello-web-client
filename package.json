@@ -9,6 +9,7 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
+    "@faker-js/faker": "^8.0.2",
     "@iconify/json": "^2.2.79",
     "@nuxt/devtools": "latest",
     "@nuxtjs/color-mode": "^3.2.0",
@@ -23,6 +24,6 @@
   },
   "dependencies": {
     "@egoist/tailwindcss-icons": "^1.1.0",
-    "vue-smooth-dnd": "^0.8.1"
+    "vue3-smooth-dnd": "^0.0.5"
   }
 }
