@@ -7,12 +7,12 @@ const NUMBER_OF_COLUMNS = 5;
 
 export const generateCard = (): Card => ({
   id: faker.string.uuid(),
-  title: faker.string.sample(),
+  title: faker.hacker.phrase(),
 });
 
 export const generateColumn = (): Column => ({
   id: faker.string.uuid(),
-  title: faker.string.sample(),
+  title: faker.hacker.verb(),
   cards: Array(NUMBER_OF_CARDS)
     .fill(0)
     .map((_) => generateCard()),
@@ -20,7 +20,7 @@ export const generateColumn = (): Column => ({
 
 export const generateBoard = (): Board => ({
   id: faker.string.uuid(),
-  title: faker.string.sample(),
+  title: faker.hacker.phrase(),
   columns: Array(NUMBER_OF_COLUMNS)
     .fill(0)
     .map(() => generateColumn()),
