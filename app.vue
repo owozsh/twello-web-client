@@ -7,8 +7,6 @@
 </template>
 
 <script setup>
-const colorMode = useColorMode();
-
 useHead({
   title: "twello",
 });

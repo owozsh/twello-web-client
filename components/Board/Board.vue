@@ -65,17 +65,15 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { Container, Draggable } from "vue3-smooth-dnd";
-import { getBoard } from "../../lib/api/boards.ts";
+import { getBoard } from "~/lib/services/boards";
 
 export default {
   name: "app",
   components: { Container, Draggable },
   data() {
-    const board = getBoard(0);
-
-    console.log(board.columns);
+    const board = getBoard("0");
 
     return {
       title: board.title,
@@ -106,3 +104,4 @@ export default {
   },
 };
 </script>
+../../lib/services/boards.js

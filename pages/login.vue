@@ -1,8 +1,51 @@
+<script setup lang="ts">
+import { useUserStore } from "../lib/store/user";
+
+definePageMeta({
+  layout: "auth",
+});
+</script>
+
+<script lang="ts">
+export default {
+  name: "Login",
+  data() {
+    return {
+      email: "",
+      password: "",
+    };
+  },
+  methods: {
+    async login() {
+      const { login, $state } = useUserStore();
+
+      await login({
+        email: this.email,
+        password: this.password,
+      });
+
+      if ($state.auth_token) await navigateTo("/");
+    },
+  },
+};
+</script>
+
 <template>
-  <form class="flex flex-col gap-6 w-full items-center">
-    <TextInput label="E-Mail" type="text" />
-    <TextInput label="Password" type="password" />
+  <form @submit.prevent="login" class="flex flex-col gap-6 w-full items-center">
+    <input
+      placeholder="E-Mail"
+      type="text"
+      class="form-input"
+      v-model="email"
+    />
+    <input
+      placeholder="Password"
+      type="password"
+      class="form-input"
+      v-model="password"
+    />
     <button
+      type="submit"
       class="flex items-center justify-center rounded-xl bg-primary px-3 py-4 w-full text-white leading-none gap-2 group"
     >
       Login
@@ -23,9 +66,3 @@
     </NuxtLink>
   </div>
 </template>
-
-<script setup>
-definePageMeta({
-  layout: "auth",
-});
-</script>

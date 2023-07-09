@@ -6,6 +6,9 @@ export default defineNuxtConfig({
     "@nuxtjs/tailwindcss",
     "@nuxtjs/color-mode",
     "@nuxtjs/google-fonts",
+    "@pinia/nuxt",
+    "@pinia-plugin-persistedstate/nuxt",
+    "nuxt-vitest",
   ],
   colorMode: {
     dataValue: "theme",
@@ -23,5 +26,11 @@ export default defineNuxtConfig({
   },
   tailwindcss: {
     cssPath: "~/assets/css/tailwind.css",
+  },
+  runtimeConfig: {
+    public: {
+      baseURL: process.env.TWELLO_API_URL || "",
+      TWELLO_API_URL: process.env.TWELLO_API_URL || "",
+    },
   },
 });
