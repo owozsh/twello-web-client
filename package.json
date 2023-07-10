@@ -30,8 +30,10 @@
   "dependencies": {
     "@egoist/tailwindcss-icons": "^1.1.0",
     "@pinia/nuxt": "^0.4.11",
+    "@types/uuid": "^9.0.2",
     "axios": "^1.4.0",
     "pinia": "^2.1.4",
+    "uuid": "^9.0.0",
     "vue3-smooth-dnd": "^0.0.5"
   }
 }

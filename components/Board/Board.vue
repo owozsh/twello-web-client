@@ -1,25 +1,26 @@
 <script lang="ts">
 import { Container, Draggable } from "vue3-smooth-dnd";
 import { getBoard } from "~/lib/services/boards";
+import { useBoardStore } from "~/lib/store/board";
 
 export default {
   name: "app",
   components: { Container, Draggable },
   data() {
-    const board = getBoard("0");
+    const store = useBoardStore();
+    store.get_board();
 
     return {
-      title: board.title,
-      columns: board.columns,
+      board: store.board,
     };
   },
   methods: {
-    onDrop(dropResult) {
+    onDrop(dropResult: any) {
       console.log(dropResult);
 
-      this.columns = this.applyDrag(this.columns, dropResult);
+      this.board.columns = this.applyDrag(this.board?.columns, dropResult);
     },
-    applyDrag(arr, dragResult) {
+    applyDrag(arr: any, dragResult: any) {
       const { removedIndex, addedIndex, payload } = dragResult;
 
       if (removedIndex === null && addedIndex === null) return arr;
@@ -42,7 +43,7 @@ export default {
   <div class="flex">
     <Container @drop="onDrop" orientation="horizontal" group-name="columns">
       <Draggable
-        v-for="(column, i) in columns"
+        v-for="(column, i) in board.columns"
         :key="column.id"
         group-name="columns"
       >

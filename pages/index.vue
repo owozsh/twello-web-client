@@ -26,6 +26,20 @@ definePageMeta({
 <script lang="ts">
 export default {
   name: "Home",
+  methods: {
+    deleteBoard(id: string) {
+      const config = useRuntimeConfig();
+      const { auth_token } = useUserStore();
+
+      $fetch(`board/${id}`, {
+        method: "DELETE",
+        baseURL: config.public.baseURL,
+        headers: {
+          authorization: auth_token || "",
+        },
+      });
+    },
+  },
 };
 </script>
 
@@ -36,7 +50,7 @@ export default {
     <div class="flex flex-col gap-1 w-72">
       <NuxtLink to="boards/create">
         <button
-          class="flex items-center rounded-md p-3 w-full gap-4 hover:bg-base-200 transition-all"
+          class="cursor-default flex items-center rounded-md p-3 w-full gap-4 hover:bg-base-200 transition-all"
         >
           <span class="i-mdi-plus text-lg"></span>
           New Board
@@ -44,15 +58,25 @@ export default {
       </NuxtLink>
       <hr />
       <ul>
-        <li v-for="board in boards?.boards?.owned" :key="board.id">
-          <NuxtLink :to="`boards/${board.id}`">
+        <li
+          class="flex group w-full"
+          v-for="board in boards?.boards?.owned"
+          :key="board.id"
+        >
+          <NuxtLink class="flex-1" @click.stop :to="`boards/${board.id}`">
             <button
-              class="flex items-center rounded-md p-3 w-full gap-4 hover:bg-base-200 transition-all"
+              class="cursor-default flex items-center rounded-md p-3 w-full gap-4 hover:bg-base-200 transition-all max-h-10"
             >
               <span class="i-mdi-folder text-lg"></span>
               {{ board.title }}
             </button>
           </NuxtLink>
+          <button
+            @click.stop="() => deleteBoard(board.id)"
+            class="cursor-default hover:bg-base-200 opacity-0 group-hover:opacity-100 items-center p-2 rounded-md transition-all"
+          >
+            <span class="i-mdi-trash-can"></span>
+          </button>
         </li>
       </ul>
       <hr />
@@ -60,7 +84,7 @@ export default {
         <li v-for="board in boards?.boards?.shared" :key="board.id">
           <NuxtLink :to="`boards/${board.id}`">
             <button
-              class="flex items-center rounded-md p-3 w-full gap-4 hover:bg-base-200 transition-all"
+              class="group flex items-center rounded-md p-3 w-full gap-4 hover:bg-base-200 transition-all"
             >
               <span class="i-mdi-folder-shared text-lg"></span>
               {{ board.title }}
