@@ -85,6 +85,9 @@ export default {
       </Draggable>
     </Container>
     <button
+      :on-click="
+        () => board.columns.push({ id: '1', title: 'New Column', cards: [] })
+      "
       class="text-base-600 h-12 flex items-center pl-4 transition-all text-sm cursor-pointer w-60 rounded-lg p-2 mb-1 hover:bg-base-200 border border-solid border-transparent hover:border-base-300"
     >
       <span class="i-mdi-plus mr-3"> </span>
