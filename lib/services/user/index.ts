@@ -12,6 +12,7 @@ export class UserService implements IUserService {
   }
 
   async login(payload: LoginPayload): Promise<{
+    user: User;
     token: string;
   }> {
     const config = useRuntimeConfig();

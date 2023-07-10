@@ -32,6 +32,7 @@ export const useUserStore = defineStore("user", {
       }
 
       this.auth_token = res.token;
+      this.user = res.user;
     },
 
     async logout() {

@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  @apply leading-4;
+}
+
 .form-input {
   @apply transition-all w-full bg-base-50 px-4 py-3 rounded-xl border border-solid border-base-200 hover:border-base-300 text-base-700 placeholder:text-base-300 hover:bg-base-50 outline outline-0 outline-transparent focus:outline-primary/20 focus:outline-4 focus:border-primary/75 focus:text-primary focus:placeholder:text-primary/60;
+}
+
+.input {
+  @apply transition-all w-full bg-base-50 p-3 rounded-md border border-solid border-base-200 hover:border-base-300 text-base-700 placeholder:text-base-300 outline outline-0 outline-transparent focus:outline-primary/20 focus:outline-4 focus:border-primary/75 focus:text-primary focus:placeholder:text-primary/60;
+}
+
+.btn-hover {
+  @apply hover:brightness-110 active:brightness-95 transition-all;
 }
