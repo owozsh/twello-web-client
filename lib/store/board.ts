@@ -127,6 +127,7 @@ export const useBoardStore = defineStore("board", {
           if (column.id === column_id) {
             return {
               ...column,
+              updatedAt: new Date().toISOString(),
               cards: [
                 ...column.cards,
                 {
@@ -136,6 +137,22 @@ export const useBoardStore = defineStore("board", {
                   updatedAt: new Date().toISOString(),
                 },
               ],
+            };
+          }
+
+          return column;
+        }),
+      });
+    },
+    async delete_card(column_id: string, card_id: string) {
+      await this.update_board({
+        ...this.board,
+        columns: this.board.columns.map((column) => {
+          if (column.id === column_id) {
+            return {
+              ...column,
+              updatedAt: new Date().toISOString(),
+              cards: column.cards.filter((card) => card.id !== card_id),
             };
           }
 

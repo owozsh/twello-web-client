@@ -126,7 +126,7 @@ export default {
               class="p-2 pt-0"
             >
               <div
-                class="w-full group flex items-center justify-between text-base-800 text-sm shadow-sm cursor-pointer active:cursor-grabbing rounded-lg bg-base-50 border border-solid border-base-300 p-4 mb-1 max-h-12"
+                class="w-full group flex items-center justify-between text-base-800 text-sm shadow-sm cursor-pointer active:cursor-grabbing rounded-lg bg-base-50 border border-solid border-base-300 p-2 mb-1 max-h-12"
               >
                 <input
                   class="bg-transparent text-sm px-1 text-base-800 truncate ... overflow-hidden w-full cursor-pointer focus:cursor-text active:cursor-grabbing"
@@ -141,6 +141,12 @@ export default {
                   "
                   @keydown.esc="($event.target as HTMLInputElement).blur()"
                 />
+                <button
+                  @click.stop="store.delete_card(column.id, card.id)"
+                  class="flex cursor-default hover:bg-base-200 opacity-0 group-hover:opacity-100 items-center p-2 w-8 rounded-md transition-all"
+                >
+                  <span class="i-mdi-trash-can"></span>
+                </button>
               </div>
             </Draggable>
           </Container>
