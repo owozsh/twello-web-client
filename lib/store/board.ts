@@ -38,6 +38,8 @@ export const useBoardStore = defineStore("board", {
       const route = useRoute();
       const { auth_token } = useUserStore();
 
+      // if (!route.params.board) return;
+
       const res = await $fetch<BoardRes>(
         `${base_endpoint}/${route.params.board}`,
         {

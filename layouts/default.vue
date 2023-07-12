@@ -1,9 +1,12 @@
 <script setup lang="ts">
+import { useBoardStore } from "~/lib/store/board";
 import { useUserStore } from "~/lib/store/user";
 
 const route = useRoute();
 
 const { user } = useUserStore();
+
+const store = useBoardStore();
 
 definePageMeta({
   middleware: ["auth"],
@@ -48,9 +51,14 @@ export default {
         ></span>
       </transition>
       <transition name="slide">
-        <h3 v-if="route.name?.toString().includes('boards-board')">
-          {{ route.params.board }}
-        </h3>
+        <input
+          v-if="route.name?.toString().includes('boards-board')"
+          class="bg-transparent font-2xl"
+          :value="store.board.title"
+          @input="
+            (e) => store.update_column_title(store.board.id, e.target.value)
+          "
+        />
       </transition>
       <div class="flex flex-1 items-center justify-end">
         <transition name="slide">
