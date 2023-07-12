@@ -23,7 +23,10 @@ export const useBoardStore = defineStore("board", {
   state: () => ({
     board: {
       id: "",
-      metadata: {},
+      metadata: {
+        backgroundColor:"",
+        textColor: "",
+      },
       title: "",
       columns: [],
       createdAt: "",
@@ -89,6 +92,27 @@ export const useBoardStore = defineStore("board", {
         },
       });
     },
+    async update_board_title(title: string) {
+      await this.update_board({
+        ...this.board,
+        title,
+      });
+    },
+
+    async update_board_bg_color(backgroundColor: string) {
+      await this.update_board({
+        ...this.board,
+        metadata:{...this.board.metadata, backgroundColor},
+      });
+    },
+
+    async update_board_txt_color(textColor: string) {
+      await this.update_board({
+        ...this.board,
+        metadata:{...this.board.metadata, textColor},
+      });
+    },
+    
     async add_column() {
       await this.update_board({
         ...this.board,
