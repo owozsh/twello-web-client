@@ -122,7 +122,7 @@ export default {
                 class="w-full group flex items-center justify-between text-base-800 text-sm shadow-sm cursor-pointer active:cursor-grabbing rounded-lg bg-base-50 border border-solid border-base-300 p-4 mb-1 max-h-12"
               >
                 <input
-                  class="bg-transparent text-sm px-1 text-base-800 truncate ... overflow-hidden w-full"
+                  class="bg-transparent text-sm px-1 text-base-800 truncate ... overflow-hidden w-full cursor-pointer focus:cursor-text"
                   :value="card.title"
                   @input="
                     (e) =>
@@ -132,7 +132,6 @@ export default {
                         e.target.value
                       )
                   "
-                  @mousedown.stop
                   @keydown.esc="($event.target as HTMLInputElement).blur()"
                 />
               </div>
