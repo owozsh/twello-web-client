@@ -39,6 +39,8 @@ export const useUserStore = defineStore("user", {
       this.user = null;
       this.auth_token = null;
     },
+
+    async reset_password(code: string) {},
   },
   persist: true,
 });
