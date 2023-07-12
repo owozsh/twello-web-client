@@ -61,7 +61,7 @@ adicionar uma lista
 [X] Cada lista de um quadro pode ter vários cartões, cada qual com um conteúdo (um texto
 livre), uma data de criação e a data da última alteração.
 [X] Ao visualizar um quadro, o usuário com direito de edição deve ser capaz de adicionar um cartão em uma lista,
-[x] eliminar um cartão
+[X] eliminar um cartão
 [X] e mover um cartão para outra lista.
 
 ## Requisito 5
@@ -71,8 +71,8 @@ livre), uma data de criação e a data da última alteração.
 
 ## Requisito 6
 
-[x] Deve ser possível marcar um quadro como favorito.
-[x] Este quadro será apresentado com uma estrela na lista de quadros. É possível que eu marque um quadro que recebi via
+[X] Deve ser possível marcar um quadro como favorito.
+[X] Este quadro será apresentado com uma estrela na lista de quadros. É possível que eu marque um quadro que recebi via
 compartilhamento como favorito, ainda que o dono do quadro não o tenha marcado assim.
 
 ## Requisitos extra
