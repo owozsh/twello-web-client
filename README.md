@@ -36,7 +36,7 @@ yarn preview
 [X] permitindo que usuários criem contas
 [X] entrem no sistema (login)
 [X] saiam do sistema (logout) (apenas front)
-[ ] recuperem suas senhas e troquem de senha.
+[X] recuperem suas senhas e troquem de senha.
 
 ## Requisito 2
 
