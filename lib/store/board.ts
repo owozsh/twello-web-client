@@ -150,6 +150,7 @@ export const useBoardStore = defineStore("board", {
           if (column.id === column_id) {
             return {
               ...column,
+              updatedAt: new Date().toISOString(),
               cards: column.cards.map((card) => {
                 if (card.id === card_id) {
                   return {
