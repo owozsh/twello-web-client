@@ -28,15 +28,15 @@ export default {
       const store = useBoardStore();
 
       if (dropResult.removedIndex !== null || dropResult.addedIndex !== null) {
-        const scene = Object.assign({}, store.$state.board);
-        const column = scene.columns.filter((p) => p.id === columnId)[0];
-        const columnIndex = scene.columns.indexOf(column);
+        const _board = Object.assign({}, store.$state.board);
+        const _column = _board.columns.filter((p) => p.id === columnId)[0];
+        const columnIndex = _board.columns.indexOf(_column);
 
-        const newColumn = Object.assign({}, column);
+        const newColumn = Object.assign({}, _column);
         newColumn.cards = this.applyDrag(newColumn.cards, dropResult);
-        scene.columns.splice(columnIndex, 1, newColumn);
+        _board.columns.splice(columnIndex, 1, newColumn);
 
-        store.update_board(scene);
+        store.update_board(_board);
       }
     },
 
