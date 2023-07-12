@@ -5,7 +5,7 @@ import { Board } from "~/lib/types/board";
 const config = useRuntimeConfig();
 const { auth_token } = useUserStore();
 
-const { data: boards } = useFetch<{
+const { data: boards, refresh } = useFetch<{
   boards: {
     owned: Board[];
     shared: Board[];
@@ -27,11 +27,11 @@ definePageMeta({
 export default {
   name: "Home",
   methods: {
-    deleteBoard(id: string) {
+    async deleteBoard(id: string) {
       const config = useRuntimeConfig();
       const { auth_token } = useUserStore();
 
-      $fetch(`board/${id}`, {
+      await $fetch(`board/${id}`, {
         method: "DELETE",
         baseURL: config.public.baseURL,
         headers: {
@@ -72,7 +72,12 @@ export default {
             </button>
           </NuxtLink>
           <button
-            @click.stop="() => deleteBoard(board.id)"
+            @click.stop="
+              async () => {
+                await deleteBoard(board.id);
+                refresh();
+              }
+            "
             class="cursor-default hover:bg-base-200 opacity-0 group-hover:opacity-100 items-center p-2 rounded-md transition-all"
           >
             <span class="i-mdi-trash-can"></span>
