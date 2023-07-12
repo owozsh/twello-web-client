@@ -21,6 +21,8 @@ export default {
       await request_rest_password(this.email).catch((e) => {
         alert(JSON.stringify(e.message));
       });
+
+      await navigateTo("reset-password/code");
     },
   },
 };
