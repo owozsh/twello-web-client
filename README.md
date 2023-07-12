@@ -36,7 +36,7 @@ yarn preview
 [X] permitindo que usuários criem contas
 [X] entrem no sistema (login)
 [X] saiam do sistema (logout) (apenas front)
-[ ] recuperem suas senhas e troquem de senha.
+[X] recuperem suas senhas e troquem de senha.
 
 ## Requisito 2
 
@@ -61,7 +61,7 @@ adicionar uma lista
 [X] Cada lista de um quadro pode ter vários cartões, cada qual com um conteúdo (um texto
 livre), uma data de criação e a data da última alteração.
 [X] Ao visualizar um quadro, o usuário com direito de edição deve ser capaz de adicionar um cartão em uma lista,
-[ ] eliminar um cartão
+[X] eliminar um cartão
 [X] e mover um cartão para outra lista.
 
 ## Requisito 5
