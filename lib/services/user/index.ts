@@ -48,4 +48,17 @@ export class UserService implements IUserService {
       baseURL: config.public.baseURL,
     });
   }
+
+  async changePassword(token:string, password:string): Promise<void> {
+    const config = useRuntimeConfig();
+
+    return $fetch(`${this.base_endpoint}/change-password`, {
+      method: "POST",
+      body: {
+        token,
+        password
+      },
+      baseURL: config.public.baseURL,
+    });
+  }
 }

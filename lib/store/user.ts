@@ -7,6 +7,7 @@ export const useUserStore = defineStore("user", {
     user: null as User | null,
     auth_token: null as string | null,
     error: null as any,
+    changePasswordError: null as any
   }),
 
   actions: {
@@ -48,6 +49,16 @@ export const useUserStore = defineStore("user", {
       const userService = new UserService();
       await userService.request_reset_password(code);
     },
+
+    async changePassword(code: string, password: string) {
+      const userService = new UserService();
+      await userService.changePassword(code, password).catch(e => { 
+        alert(JSON.stringify(e.message))
+        this.changePasswordError = e;
+        return;
+      })
+      return;
+    }
   },
   persist: true,
 });
