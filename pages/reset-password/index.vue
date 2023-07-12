@@ -16,7 +16,11 @@ export default {
   },
   methods: {
     async resetPassword() {
-      const { reset_password, $state } = useUserStore();
+      const { request_rest_password } = useUserStore();
+
+      await request_rest_password(this.email).catch((e) => {
+        alert(JSON.stringify(e.message));
+      });
     },
   },
 };
