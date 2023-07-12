@@ -6,6 +6,7 @@ export const useUserStore = defineStore("user", {
   state: () => ({
     user: null as User | null,
     auth_token: null as string | null,
+    error:null as any
   }),
 
   actions: {
@@ -26,18 +27,21 @@ export const useUserStore = defineStore("user", {
       const userService = new UserService();
 
       const res = await userService.login(payload);
-
+      
       if (!res.token) {
+        this.error = res
         return;
       }
 
       this.auth_token = res.token;
       this.user = res.user;
+      this.error = null
     },
 
     async logout() {
       this.user = null;
       this.auth_token = null;
+      this.error = null
     },
   },
   persist: true,
