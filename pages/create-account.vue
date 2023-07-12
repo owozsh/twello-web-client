@@ -22,15 +22,15 @@ export default {
       const { create_user, $state } = useUserStore();
 
       if (this.password !== this.password_confirmation) {
-        alert('Passwords do not match')
-        return
+        alert("Passwords do not match");
+        return;
       }
 
       await create_user({
         email: this.email,
         name: this.name,
         password: this.password,
-      })
+      });
 
       if ($state.auth_token) await navigateTo("/");
     },

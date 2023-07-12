@@ -24,6 +24,8 @@ export const useBoardStore = defineStore("board", {
       metadata: {},
       title: "",
       columns: [],
+      createdAt: "",
+      updatedAt: "",
     } as Board,
   }),
   actions: {
@@ -47,6 +49,8 @@ export const useBoardStore = defineStore("board", {
         title: res.title,
         columns: res.content.columns,
         id: res.id,
+        createdAt: res.createdAt,
+        updatedAt: res.updatedAt,
         metadata: {
           backgroundColor: res.backgroundColor,
           textColor: res.textColor,
@@ -88,6 +92,8 @@ export const useBoardStore = defineStore("board", {
             id: v4(),
             title: "",
             cards: [],
+            createdAt: new Date().toISOString(),
+            updatedAt: new Date().toISOString(),
           },
         ],
       });
@@ -100,6 +106,7 @@ export const useBoardStore = defineStore("board", {
             return {
               ...column,
               title,
+              updatedAt: new Date().toISOString(),
             };
           }
 
@@ -125,6 +132,8 @@ export const useBoardStore = defineStore("board", {
                 {
                   id: v4(),
                   title: "",
+                  createdAt: new Date().toISOString(),
+                  updatedAt: new Date().toISOString(),
                 },
               ],
             };
@@ -141,11 +150,13 @@ export const useBoardStore = defineStore("board", {
           if (column.id === column_id) {
             return {
               ...column,
+              updatedAt: new Date().toISOString(),
               cards: column.cards.map((card) => {
                 if (card.id === card_id) {
                   return {
                     ...card,
                     title,
+                    updatedAt: new Date().toISOString(),
                   };
                 }
 
