@@ -28,11 +28,16 @@ export default {
       const store = useBoardStore();
 
       if (dropResult.removedIndex !== null || dropResult.addedIndex !== null) {
-        const _board = Object.assign({}, store.$state.board);
+        const _board = {
+          ...store.$state.board,
+        };
         const _column = _board.columns.filter((p) => p.id === columnId)[0];
         const columnIndex = _board.columns.indexOf(_column);
 
-        const newColumn = Object.assign({}, _column);
+        const newColumn = {
+          ..._column,
+        };
+
         newColumn.cards = this.applyDrag(newColumn.cards, dropResult);
         _board.columns.splice(columnIndex, 1, newColumn);
 
