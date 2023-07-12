@@ -7,6 +7,7 @@ const store = useBoardStore();
 store.get_board();
 
 const bgColor = store.$state.board?.metadata?.background_color || "#F7F7F7";
+const txtColor = store.$state.board?.metadata?.background_color || "#000";
 </script>
 
 <script lang="ts">
@@ -82,12 +83,15 @@ export default {
 
 <style>
 .board_bg_color {
-  background-color: v-bind(bgColor);
+  background-color: v-bind(store.$state.board.metadata.background_color);
+}
+.board_text_color {
+  color: v-bind(store.$state.board.metadata.text_color);
 }
 </style>
 
 <template>
-  <div class="flex board_bg_color">
+  <div class="flex board_bg_color p-4 rounded-xl">
     <Container @drop="onDrop" orientation="horizontal" group-name="columns">
       <Draggable
         v-for="(column, i) in store.board.columns"
@@ -99,7 +103,7 @@ export default {
         >
           <div class="flex items-center justify-between px-4 mb-2">
             <input
-              class="bg-transparent text-sm px-1 text-base-800"
+              class="board_text_color bg-transparent text-sm px-1 text-base-800"
               :value="column.title"
               @input="
                 (e) => store.update_column_title(column.id, e.target.value)
@@ -129,7 +133,7 @@ export default {
                 class="w-full group flex items-center justify-between text-base-800 text-sm shadow-sm cursor-pointer active:cursor-grabbing rounded-lg bg-base-50 border border-solid border-base-300 p-2 mb-1 max-h-12"
               >
                 <input
-                  class="bg-transparent text-sm px-1 text-base-800 truncate ... overflow-hidden w-full cursor-pointer focus:cursor-text active:cursor-grabbing"
+                  class="board_text_color bg-transparent text-sm px-1 text-base-800 truncate ... overflow-hidden w-full cursor-pointer focus:cursor-text active:cursor-grabbing"
                   :value="card?.title"
                   @input="
                     (e) =>

@@ -24,8 +24,8 @@ export const useBoardStore = defineStore("board", {
     board: {
       id: "",
       metadata: {
-        backgroundColor:"",
-        textColor: "",
+        background_color: "",
+        text_color: "",
       },
       title: "",
       columns: [],
@@ -63,8 +63,8 @@ export const useBoardStore = defineStore("board", {
         isFavorite: res.isFavorite,
         relationId: res.relationId,
         metadata: {
-          backgroundColor: res.backgroundColor,
-          textColor: res.textColor,
+          background_color: res.backgroundColor,
+          text_color: res.textColor,
         },
       };
 
@@ -81,11 +81,12 @@ export const useBoardStore = defineStore("board", {
         method: "PUT",
         body: JSON.stringify({
           title: board.title,
-          backgroundColor: board.metadata.backgroundColor,
+          backgroundColor: board.metadata.background_color,
+          textColor: board.metadata.text_color,
           content: {
             columns: board.columns,
           },
-          createdAt: board.metadata.createdAt,
+          createdAt: board.createdAt,
           updatedAt: new Date().toISOString(),
         } as BoardRes),
         baseURL: config.public.baseURL,
@@ -101,20 +102,20 @@ export const useBoardStore = defineStore("board", {
       });
     },
 
-    async update_board_bg_color(backgroundColor: string) {
+    async update_board_bg_color(background_color: string) {
       await this.update_board({
         ...this.board,
-        metadata:{...this.board.metadata, backgroundColor},
+        metadata: { ...this.board.metadata, background_color },
       });
     },
 
-    async update_board_txt_color(textColor: string) {
+    async update_board_txt_color(text_color: string) {
       await this.update_board({
         ...this.board,
-        metadata:{...this.board.metadata, textColor},
+        metadata: { ...this.board.metadata, text_color },
       });
     },
-    
+
     async add_column() {
       await this.update_board({
         ...this.board,

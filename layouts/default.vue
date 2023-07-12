@@ -52,15 +52,48 @@ export default {
       </transition>
       <transition name="slide">
         <input
-          v-if="route.name?.toString().includes('boards-board')"
+          v-if="
+            route.name?.toString().includes('boards-board') &&
+            store.board?.id !== null
+          "
           class="bg-transparent font-2xl"
           :value="store.board.title"
-          @input="
-            (e) => store.update_column_title(store.board.id, e.target.value)
-          "
+          @input="(e) => store.update_board_title(e.target.value)"
         />
       </transition>
-      <div class="flex flex-1 items-center justify-end">
+      <div class="flex flex-1 items-center justify-end gap-2">
+        <transition name="slide">
+          <div
+            v-if="
+              route.name?.toString().includes('boards-board') &&
+              store.board?.id !== null
+            "
+          >
+            <label for="bg-color"> Background Color: </label>
+            <input
+              id="bg-color"
+              class="bg-transparent font-2xl w-24"
+              :value="store.board.metadata.background_color"
+              @focusout="store.update_board_bg_color($event.target.value)"
+            />
+          </div>
+        </transition>
+        <transition name="slide">
+          <div
+            v-if="
+              route.name?.toString().includes('boards-board') &&
+              store.board?.id !== null
+            "
+          >
+            <label for="text-color"> Text Color: </label>
+            <input
+              id="text-color"
+              class="bg-transparent font-2xl w-24"
+              :value="store.board.metadata.text_color"
+              @focusout="store.update_board_txt_color($event.target.value)"
+            />
+          </div>
+        </transition>
         <transition name="slide">
           <NuxtLink :to="`${route.fullPath}/share`">
             <button

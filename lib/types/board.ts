@@ -1,6 +1,9 @@
 export type Board = {
   id: string;
-  metadata: any;
+  metadata: {
+    background_color: string;
+    text_color: string;
+  };
   title: string;
   isFavorite: boolean;
   createdAt: string;
