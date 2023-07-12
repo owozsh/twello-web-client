@@ -5,6 +5,8 @@ import { useUserStore } from "~/lib/store/user";
 const store = useBoardStore();
 
 store.get_board();
+
+const bgColor = store.$state.board?.metadata?.background_color || "#F7F7F7";
 </script>
 
 <script lang="ts">
@@ -24,7 +26,7 @@ export default {
         columns: this.applyDrag(store.$state.board.columns, dropResult),
       });
     },
-    onCardDrop(columnId: string, dropResult: any) {
+    onCardDrop(dropResult: any, columnId: string) {
       const store = useBoardStore();
 
       if (dropResult.removedIndex !== null || dropResult.addedIndex !== null) {
@@ -78,11 +80,17 @@ export default {
 };
 </script>
 
+<style>
+.board_bg_color {
+  background-color: v-bind(bgColor);
+}
+</style>
+
 <template>
-  <div class="flex">
+  <div class="flex board_bg_color">
     <Container @drop="onDrop" orientation="horizontal" group-name="columns">
       <Draggable
-        v-for="(column, i) in store.$state.board.columns"
+        v-for="(column, i) in store.board.columns"
         :key="column.id"
         group-name="columns"
       >
@@ -96,7 +104,6 @@ export default {
               @input="
                 (e) => store.update_column_title(column.id, e.target.value)
               "
-              @mousedown.stop
               @keydown.esc="($event.target as HTMLInputElement).blur()"
             />
             <button
@@ -108,13 +115,13 @@ export default {
           </div>
 
           <Container
-            @drop="(e) => onCardDrop(column.id, e)"
+            @drop="onCardDrop($event, column.id)"
             group-name="cards"
             :get-child-payload="(e) => store.$state.board.columns[i].cards[e]"
           >
             <Draggable
               v-for="(card, i) in column.cards"
-              :key="card.id"
+              :key="card?.id"
               group-name="cards"
               class="p-2 pt-0"
             >
@@ -122,8 +129,8 @@ export default {
                 class="w-full group flex items-center justify-between text-base-800 text-sm shadow-sm cursor-pointer active:cursor-grabbing rounded-lg bg-base-50 border border-solid border-base-300 p-4 mb-1 max-h-12"
               >
                 <input
-                  class="bg-transparent text-sm px-1 text-base-800 truncate ... overflow-hidden w-full cursor-pointer focus:cursor-text"
-                  :value="card.title"
+                  class="bg-transparent text-sm px-1 text-base-800 truncate ... overflow-hidden w-full cursor-pointer focus:cursor-text active:cursor-grabbing"
+                  :value="card?.title"
                   @input="
                     (e) =>
                       store.update_card_title(

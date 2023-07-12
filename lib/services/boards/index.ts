@@ -24,7 +24,7 @@ export class BoardService {
       method: "POST",
       body: {
         ...payload,
-        backgroundColor: "#fff",
+        backgroundColor: "#F7F7F7",
         textColor: "#000",
       },
       baseURL: config.public.baseURL,

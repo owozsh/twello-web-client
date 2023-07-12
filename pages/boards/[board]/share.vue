@@ -5,8 +5,6 @@ import { useUserStore } from "~/lib/store/user";
 const config = useRuntimeConfig();
 const { auth_token, user } = useUserStore();
 
-console.log(user);
-
 const route = useRoute();
 
 const { data: maintainers, refresh } = useFetch<Maintainer[]>(
@@ -39,7 +37,7 @@ export default {
       const config = useRuntimeConfig();
       const { auth_token } = useUserStore();
 
-      useFetch(`board/${route.params.board}/share`, {
+      await useFetch(`board/${route.params.board}/share`, {
         method: "POST",
         body: {
           userEmail: this.email,
@@ -50,8 +48,6 @@ export default {
           authorization: auth_token || "",
         },
       });
-
-      refresh();
     },
   },
 };
@@ -63,7 +59,16 @@ export default {
   >
     <div class="flex flex-col w-80 gap-3">
       <h3 class="ml-2">Invite Users</h3>
-      <form class="flex flex-col gap-2" @submit.prevent="invite">
+      <form
+        class="flex flex-col gap-2"
+        @submit.prevent="
+          async () => {
+            await invite();
+            email = '';
+            refresh();
+          }
+        "
+      >
         <div class="flex gap-2">
           <input
             class="input"
