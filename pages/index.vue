@@ -101,7 +101,7 @@ export default {
             v-if="!board.isFavorite"
             @click.stop="
               async () => {
-                await set_favorite(board.id, true);
+                await set_favorite(board.relationId, true);
                 refresh();
               }
             "
@@ -113,7 +113,7 @@ export default {
             v-if="board.isFavorite"
             @click.stop="
               async () => {
-                await set_favorite(board.id, false);
+                await set_favorite(board.relationId, false);
                 refresh();
               }
             "

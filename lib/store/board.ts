@@ -13,6 +13,7 @@ export type BoardRes = {
   backgroundColor: string;
   textColor: string;
   isFavorite: boolean;
+  relationId: string;
   content: {
     columns: Column[];
   };
@@ -28,6 +29,7 @@ export const useBoardStore = defineStore("board", {
       createdAt: "",
       updatedAt: "",
       isFavorite: false,
+      relationId: "",
     } as Board,
   }),
   actions: {
@@ -54,6 +56,7 @@ export const useBoardStore = defineStore("board", {
         createdAt: res.createdAt,
         updatedAt: res.updatedAt,
         isFavorite: res.isFavorite,
+        relationId: res.relationId,
         metadata: {
           backgroundColor: res.backgroundColor,
           textColor: res.textColor,

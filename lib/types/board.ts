@@ -5,6 +5,7 @@ export type Board = {
   isFavorite: boolean;
   createdAt: string;
   updatedAt?: string;
+  relationId: string;
   columns: Column[];
 };
 
