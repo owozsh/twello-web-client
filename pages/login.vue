@@ -25,6 +25,7 @@ export default {
       });
 
       if ($state.auth_token) await navigateTo("/");
+      if($state.error) {alert(JSON.stringify($state.error.message))}
     },
   },
 };

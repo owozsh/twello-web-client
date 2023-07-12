@@ -21,7 +21,7 @@ export class UserService implements IUserService {
       method: "POST",
       body: payload,
       baseURL: config.public.baseURL,
-    });
+    }).catch(error => error.data);
   }
 
   async create_user(payload: CreateUserPayload): Promise<{
