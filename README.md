@@ -71,8 +71,8 @@ livre), uma data de criação e a data da última alteração.
 
 ## Requisito 6
 
-[ ] Deve ser possível marcar um quadro como favorito.
-[ ] Este quadro será apresentado com uma estrela na lista de quadros. É possível que eu marque um quadro que recebi via
+[x] Deve ser possível marcar um quadro como favorito.
+[x] Este quadro será apresentado com uma estrela na lista de quadros. É possível que eu marque um quadro que recebi via
 compartilhamento como favorito, ainda que o dono do quadro não o tenha marcado assim.
 
 ## Requisitos extra
