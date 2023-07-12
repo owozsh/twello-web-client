@@ -39,6 +39,21 @@ export default {
         },
       });
     },
+    async set_favorite(id: string, isFavorite: boolean) {
+      const config = useRuntimeConfig();
+      const { auth_token } = useUserStore();
+
+      await $fetch(`board/${id}/edit-relation`, {
+        method: "PUT",
+        baseURL: config.public.baseURL,
+        body: {
+          isFavorite,
+        },
+        headers: {
+          authorization: auth_token || "",
+        },
+      });
+    },
   },
 };
 </script>
@@ -81,6 +96,30 @@ export default {
             class="cursor-default hover:bg-base-200 opacity-0 group-hover:opacity-100 items-center p-2 rounded-md transition-all"
           >
             <span class="i-mdi-trash-can"></span>
+          </button>
+          <button
+            v-if="!board.isFavorite"
+            @click.stop="
+              async () => {
+                await set_favorite(board.id, true);
+                refresh();
+              }
+            "
+            class="cursor-default hover:bg-base-200 opacity-0 group-hover:opacity-100 items-center p-2 rounded-md transition-all"
+          >
+            <span class="i-mdi-star-outline"></span>
+          </button>
+          <button
+            v-if="board.isFavorite"
+            @click.stop="
+              async () => {
+                await set_favorite(board.id, false);
+                refresh();
+              }
+            "
+            class="cursor-default hover:bg-base-200 items-center p-2 rounded-md transition-all"
+          >
+            <span class="i-mdi-star"></span>
           </button>
         </li>
       </ul>

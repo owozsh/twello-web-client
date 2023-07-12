@@ -2,6 +2,7 @@ export type Board = {
   id: string;
   metadata: any;
   title: string;
+  isFavorite: boolean;
   createdAt: string;
   updatedAt?: string;
   columns: Column[];

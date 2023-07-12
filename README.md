@@ -61,7 +61,7 @@ adicionar uma lista
 [X] Cada lista de um quadro pode ter vários cartões, cada qual com um conteúdo (um texto
 livre), uma data de criação e a data da última alteração.
 [X] Ao visualizar um quadro, o usuário com direito de edição deve ser capaz de adicionar um cartão em uma lista,
-[ ] eliminar um cartão
+[x] eliminar um cartão
 [X] e mover um cartão para outra lista.
 
 ## Requisito 5
