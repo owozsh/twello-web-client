@@ -40,9 +40,9 @@ yarn preview
 
 ## Requisito 2
 
-[ ] Um usuário pode ter vários quadros, cada qual com um título, uma cor de fundo e uma
+[X] Um usuário pode ter vários quadros, cada qual com um título, uma cor de fundo e uma
 cor de texto. Deve ser possível criar um quadro
-[ ] alterar os dados de um quadro
+[X] alterar os dados de um quadro
 [X] remover um quadro
 [X] e visualizar um quadro.
 
